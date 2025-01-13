@@ -1,3 +1,23 @@
+const addtlFreelancerNames = [
+  "Steve",
+  "Max",
+  "Bingsoo",
+  "Jasmine",
+  "Terry",
+  "Jane",
+  "Maxina",
+  "Buddy",
+];
+const addtlFreelancerOccupations = [
+  "Accountant",
+  "Musician",
+  "Salesperson",
+  "Chemist",
+  "Lawyer",
+  "Physical Therapist",
+];
+const addtlStartingPrices = [50, 60, 65, 70, 75, 80, 85, 90, 100, 110, 120];
+
 const freelancers = [
   {
     name: "Alice",
@@ -10,6 +30,8 @@ const freelancers = [
     startingPrice: 50,
   },
 ];
+
+const maxFreelancers = 15;
 
 function render() {
   const freelancerList = document.querySelector("#tbody"); //select dom element #tbody and assign it to freelancerList
@@ -49,22 +71,45 @@ function avgStartingPrice(freelancers) {
     0
   );
 
-  return totalStartingPrice / freelancers.length;
+  return Math.round(totalStartingPrice / freelancers.length);
 }
 
-freelancers.push({
-  name: "Carol",
-  occupation: "Programmer",
-  startingPrice: 70,
-});
-
-render();
-
-freelancers.push({
-  name: "Steve",
-  occupation: "Programmer",
-  startingPrice: 200,
-});
+function addFreelancers() {
+  const addtlFreelancerName =
+    addtlFreelancerNames[
+      Math.floor(Math.random() * addtlFreelancerNames.length)
+    ];
+  const addtlFreelancerOccupation =
+    addtlFreelancerOccupations[
+      Math.floor(Math.random() * addtlFreelancerOccupations.length)
+    ];
+  const addtlStartingPrice =
+    addtlStartingPrices[Math.floor(Math.random() * addtlStartingPrices.length)];
+  freelancers.push({
+    name: addtlFreelancerName,
+    occupation: addtlFreelancerOccupation,
+    startingPrice: addtlStartingPrice,
+  });
+}
+let insertCarol = true;
+const addFreelancersInterval = setInterval(() => {
+  if (insertCarol === true) {
+    freelancers.push({
+      name: "Carol",
+      occupation: "Programmer",
+      startingPrice: 70,
+    });
+    insertCarol = false;
+    render();
+  } else {
+    if (freelancers.length >= maxFreelancers) {
+      clearInterval(addFreelancersInterval);
+    }
+    addFreelancers();
+    render();
+    console.log(freelancers);
+  }
+}, 2000);
 
 render();
 
