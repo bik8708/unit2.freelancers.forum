@@ -41,8 +41,6 @@ function render() {
 
 render();
 
-//update text of element to be the avgStarting Price - make sure to include $ dollarsign
-
 function avgStartingPrice(freelancers) {
   console.log(freelancers);
   const totalStartingPrice = freelancers.reduce(
@@ -53,17 +51,6 @@ function avgStartingPrice(freelancers) {
 
   return totalStartingPrice / freelancers.length;
 }
-
-// function calculateTotalPrice(items) {
-//   let itemTotal = items.reduce(
-//     (itemTotal, currentItem) =>
-//       (itemTotal += currentItem.price * currentItem.quantity),
-//     0
-//   );
-//   return itemTotal;
-// }
-
-// const avgStartingPrice = freelancers.startingPrice / freelancers.length; loop or reduce
 
 freelancers.push({
   name: "Carol",
@@ -81,26 +68,9 @@ freelancers.push({
 
 render();
 
-//   function render() {
-//   // Render the squares
-//   const squareList = document.querySelector("#squares");
-//   const squareElements = shapes.map((shape) => {
-//     const squareElement = document.createElement("li");
-//     squareElement.classList.add(shape.color, shape.size);
-//     return squareElement;
-//   });
-
-//   const squareElements = shapes.map((shape) => {
-//     const squareElement = document.createElement("li");
-//     // squareElement.innerText = `${shape.name} ${shape.occupation} ${shape.startingPrice}`
-//     return squareElement;
-//   });
-
-//   squareList.replaceChildren(...squareElements);
-
 /*
 bikna to do:
-  rename things - like "shapes" and "squares" should really be "people" or whatnot
+  rename "shapes" and "squares" to reflect current assignment
   update the HTML to look correct (up until the list of names)
   add the logic:
     render (this adds the first 2 people)
@@ -110,8 +80,5 @@ bikna to do:
       have a span with an ID around the $30 in the UI
       querySelector that ID and update its innerText to have the new average
     render (this adds the third person)
-
-
-
 
 */
